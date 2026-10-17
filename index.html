@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="بوتیک ماه؛ انتخابی شیک برای استایل روزمره و خاص شما">
+  <title>بوتیک ماه | فروشگاه لباس</title>
+  <style>
+    :root {
+      --cream: #faf7f1;
+      --sand: #ead7bf;
+      --gold: #bd9257;
+      --ink: #272421;
+      --muted: #77716a;
+      --white: #fff;
+      --line: #eee6dc;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.8;
+    }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 5%;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 24px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .moon { color: var(--gold); font-size: 31px; line-height: 1; }
+    nav { display: flex; align-items: center; gap: 24px; }
+    nav a { text-decoration: none; font-size: 14px; }
+    nav a:hover { color: var(--gold); }
+    .header-actions { display: flex; align-items: center; gap: 9px; }
+    .icon-button {
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 999px;
+      padding: 9px 13px;
+      cursor: pointer;
+    }
+    .cart-button { background: var(--ink); color: white; border-color: var(--ink); }
+    .hero {
+      width: 92%;
+      max-width: 1400px;
+      margin: 24px auto 38px;
+      min-height: 350px;
+      border-radius: 22px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      background: #e9ddcf;
+      box-shadow: 0 10px 28px #49341a0b;
+    }
+    .hero-photo {
+      min-height: 350px;
+      background:
+        linear-gradient(90deg, transparent 70%, #e9ddcf33),
+        url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=85') center 35% / cover;
+    }
+    .hero-copy {
+      padding: 38px clamp(20px, 5vw, 65px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .eyebrow { color: #806747; font-size: 14px; margin: 0 0 8px; }
+    h1 { font-size: clamp(29px, 4vw, 47px); line-height: 1.5; margin: 0 0 12px; }
+    .hero-copy p:not(.eyebrow) { color: #655c52; margin: 0 0 22px; }
+    .primary-button {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--ink);
+      color: white;
+      padding: 12px 23px;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .section { width: 92%; max-width: 1400px; margin: 0 auto 55px; }
+    .section-top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .section-top h2 { margin: 0; font-size: clamp(22px, 3vw, 30px); }
+    .section-top p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+    .filters { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 22px; }
+    .search-input, .category-select {
+      min-width: 0;
+      border: 1px solid #e5dbcf;
+      background: white;
+      padding: 11px 13px;
+      border-radius: 8px;
+      outline-color: var(--gold);
+    }
+    .search-input { flex: 1 1 190px; }
+    .category-select { flex: 0 1 160px; }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .product-card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px #30231210; }
+    .product-image { width: 100%; height: 280px; object-fit: cover; display: block; background: #eee5d9; }
+    .product-info { padding: 15px; }
+    .product-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .product-meta h3 { margin: 0; font-size: 16px; }
+    .tag { font-size: 11px; color: #6f5438; background: #f4e8d9; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+    .product-price { font-weight: bold; margin: 11px 0 13px; }
+    .add-button {
+      width: 100%;
+      border: 0;
+      background: var(--sand);
+      color: var(--ink);
+      padding: 11px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .add-button:hover { background: #ddc19f; }
+    .empty-state { grid-column: 1 / -1; padding: 30px; text-align: center; color: var(--muted); }
+    .about-strip {
+      width: 92%; max-width: 1400px; margin: 0 auto 55px;
+      padding: 28px; border-radius: 16px; background: #f0e5d8;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+      text-align: center;
+    }
+    .about-strip strong { display: block; margin-bottom: 5px; }
+    .about-strip span { color: #6d645a; font-size: 13px; }
+    footer { background: var(--ink); color: #f7f0e7; padding: 35px 5% 18px; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 28px; max-width: 1400px; margin: auto; }
+    footer .brand { margin-bottom: 10px; }
+    footer p, footer a { color: #d4c9bd; font-size: 13px; }
+    footer a { display: block; text-decoration: none; margin: 5px 0; }
+    footer a:hover { color: white; }
+    .copyright { max-width: 1400px; margin: 25px auto 0; border-top: 1px solid #ffffff20; padding-top: 14px; text-align: center; color: #bcb2a7; font-size: 12px; }
+    .notice { position: fixed; bottom: 18px; right: 18px; z-index: 20; max-width: calc(100% - 36px); background: #292622; color: white; padding: 12px 18px; border-radius: 10px; box-shadow: 0 6px 20px #0002; }
+    .notice[hidden] { display: none; }
+    @media (max-width: 800px) {
+      .site-header { padding: 12px 4%; flex-wrap: wrap; gap: 10px; }
+      nav { order: 3; width: 100%; justify-content: center; gap: 20px; }
+      nav a { font-size: 13px; }
+      .brand { font-size: 21px; }
+      .hero { grid-template-columns: 1fr; margin-top: 16px; }
+      .hero-photo { order: 2; min-height: 250px; }
+      .hero-copy { padding: 28px; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .product-image { height: 210px; }
+      .product-info { padding: 11px; }
+      .product-meta { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .product-meta h3 { font-size: 14px; }
+      .about-strip { grid-template-columns: 1fr; gap: 16px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 390px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .product-image { height: 280px; }
+      .header-actions .icon-button { padding: 7px 10px; font-size: 12px; }
+      nav { gap: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="صفحه اصلی بوتیک ماه"><span class="moon">☾</span><span>بوتیک ماه</span></a>
+    <nav aria-label="منوی اصلی">
+      <a href="#">خانه</a>
+      <a href="#products">محصولات</a>
+      <a href="#about">درباره ما</a>
+      <a href="#contact">تماس با ما</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button cart-button" type="button" id="cartButton">سبد خرید (<span id="cartCount">۰</span>)</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-photo" role="img" aria-label="استایل شیک و مدرن"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">به بوتیک ماه خوش آمدید</p>
+        <h1>استایل خاص، برای روزهای خاص تو</h1>
+        <p>انتخاب‌هایی ساده و زیبا برای ساختن استایلی که خودت دوستش داری.</p>
+        <a class="primary-button" href="#products">مشاهده محصولات ←</a>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="section-top">
+        <div>
+          <h2>محصولات فروشگاه</h2>
+          <p>کالکشن جدید بوتیک ماه 🌙</p>
+        </div>
+      </div>
+      <div class="filters">
+        <input class="search-input" id="searchInput" type="search" placeholder="جست‌وجوی محصول..." aria-label="جست‌وجوی محصول">
+        <select class="category-select" id="categorySelect" aria-label="فیلتر دسته‌بندی">
+          <option value="همه">همه محصولات</option>
+          <option value="زنانه">زنانه</option>
+          <option value="مردانه">مردانه</option>
+          <option value="اکسسوری">اکسسوری</option>
+        </select>
+      </div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="about-strip" id="about">
+      <div><strong>✦ انتخاب‌های خاص</strong><span>محصولاتی برای سلیقه‌های متفاوت</span></div>
+      <div><strong>☾ استایل مینیمال</strong><span>سادگی، زیبایی و آرامش در کنار هم</span></div>
+      <div><strong>♡ همراه شما</strong><span>یک تجربه خرید ساده و دلنشین</span></div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><span class="moon">☾</span><span>بوتیک ماه</span></div>
+        <p>زیبایی در سادگی است؛ استایل خودت را با بوتیک ماه پیدا کن.</p>
+      </div>
+      <div>
+        <strong>لینک‌های سریع</strong>
+        <a href="#">صفحه اصلی</a>
+        <a href="#products">محصولات</a>
+        <a href="#about">درباره ما</a>
+      </div>
+      <div>
+        <strong>تماس با ما</strong>
+        <p>ایمیل: info@maaboutique.example</p>
+        <p>این سایت یک پروژه نمایشی دانشگاهی است.</p>
+      </div>
+    </div>
+    <div class="copyright">© ۲۰۲۶ بوتیک ماه — تمامی حقوق محفوظ است.</div>
+  </footer>
+
+  <div class="notice" id="notice" role="status" hidden></div>
+
+  <script>
+    const products = [
+      {
+        name: "مانتو مینیمال",
+        category: "زنانه",
+        price: 1250000,
+        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=85"
+      },
+      {
+        name: "پیراهن تابستانی",
+        category: "زنانه",
+        price: 890000,
+        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=85"
+      },
+      {
+        name: "استایل روزمره",
+        category: "مردانه",
+        price: 980000,
+        image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=85"
+      },
+      {
+        name: "کت کلاسیک",
+        category: "مردانه",
+        price: 1750000,
+        image: "https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&w=800&q=85"
+      },
+      {
+        name: "کیف مینیمال",
+        category: "اکسسوری",
+        price: 690000,
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85"
+      },
+      {
+        name: "عینک آفتابی",
+        category: "اکسسوری",
+        price: 420000,
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=85"
+      }
+    ];
+
+    const cart = [];
+    const grid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categorySelect = document.getElementById("categorySelect");
+    const cartCount = document.getElementById("cartCount");
+    const notice = document.getElementById("notice");
+    let noticeTimer;
+
+    function formatPrice(value) {
+      return value.toLocaleString("fa-IR") + " تومان";
+    }
+
+    function renderProducts() {
+      const query = searchInput.value.trim().toLocaleLowerCase("fa");
+      const category = categorySelect.value;
+      const filtered = products
+        .map((product, index) => ({ ...product, index }))
+        .filter(product =>
+          product.name.toLocaleLowerCase("fa").includes(query) &&
+          (category === "همه" || product.category === category)
+        );
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p class="empty-state">محصولی با این مشخصات پیدا نشد.</p>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(product => `
+        <article class="product-card">
+          <img class="product-image"
+               src="${product.image}"
+               alt="${product.name}"
+               loading="lazy"
+               onerror="this.style.display='none'">
+          <div class="product-info">
+            <div class="product-meta">
+              <h3>${product.name}</h3>
+              <span class="tag">${product.category}</span>
+            </div>
+            <div class="product-price">${formatPrice(product.price)}</div>
+            <button class="add-button" type="button" data-add="${product.index}">
+              افزودن به سبد خرید 🛍
+            </button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function showNotice(message) {
+      notice.textContent = message;
+      notice.hidden = false;
+      clearTimeout(noticeTimer);
+      noticeTimer = setTimeout(() => { notice.hidden = true; }, 2600);
+    }
+
+    grid.addEventListener("click", event => {
+      const button = event.target.closest("[data-add]");
+      if (!button) return;
+      const product = products[Number(button.dataset.add)];
+      if (!product) return;
+      cart.push(product);
+      cartCount.textContent = cart.length.toLocaleString("fa-IR");
+      showNotice("«" + product.name + "» به سبد خرید اضافه شد.");
+    });
+
+    document.getElementById("cartButton").addEventListener("click", () => {
+      if (cart.length === 0) {
+        showNotice("سبد خرید شما هنوز خالی است.");
+        return;
+      }
+      const total = cart.reduce((sum, product) => sum + product.price, 0);
+      const names = cart.map((product, i) => (i + 1) + ". " + product.name).join("\n");
+      alert("محصولات سبد خرید:\n" + names + "\n\nمجموع: " + formatPrice(total));
+    });
+
+    searchInput.addEventListener("input", renderProducts);
+    categorySelect.addEventListener("change", renderProducts);
+    renderProducts();
+  </script>
+</body>
+</html>
